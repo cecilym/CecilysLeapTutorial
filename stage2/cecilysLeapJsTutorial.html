@@ -1,0 +1,45 @@
+<!-- 
+* Let's add some Leap specific data points into our HTML file. 
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- Change the title -->
+	<title>Cecilys Leap JS Tutorial</title>
+	<script src="../js/leap.min.js"></script>
+
+	<!-- Add another script tag that we will use later -->
+	<script></script>
+</head>
+
+<body>
+	<h1>Leap JavaScript Sample</h1>
+
+	<!-- Create a div with the ID main -->
+	<div id="main">
+		
+		<!-- The leap captures data one frame at a time. We're going to store that data here. -->
+		<h3>Frame data:</h3>
+		<div id="frameData"></div>
+		<div style="clear:both;"></div>
+
+		<!-- style="clear:both" is an instruction for how to display this div in relation to other divs. -->
+
+		<!-- Add some more gestural recognition data points -->
+		<h3>Hand data:</h3>
+    <div id="handData"></div>
+    <div style="clear:both;"></div>
+
+    <h3>Finger and tool data:</h3>
+    <div id="pointableData"></div>
+    <div style="clear:both;"></div>
+
+    <h3>Gesture data:</h3>
+    <div id="gestureData"></div>	
+
+	</div>
+	
+</body>
+</html>

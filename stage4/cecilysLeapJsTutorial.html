@@ -1,0 +1,85 @@
+<!-- Motion data, which the Leap provides for the scene as a whole and for each hand individually, requires a frame to serve as the basis for comparison. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Leap Motion JavaScript Sample</title>
+<script src="../js/leap.js"></script>
+<script>
+  var previousFrame;
+  var paused = false;
+  var pauseOnGesture = false;
+
+  var controllerOptions = {enableGestures: true};
+
+  Leap.loop(controllerOptions, function(frame) {
+    if (paused) {
+      return; // Skip this update
+    }
+
+    var frameOutput = document.getElementById("frameData");
+    var frameString = "Frame ID: " + frame.id  + "<br />"
+                    + "Timestamp: " + frame.timestamp + " &micro;s<br />"
+                    + "Hands: " + frame.hands.length + "<br />"
+                    + "Fingers: " + frame.fingers.length + "<br />"
+                    + "Tools: " + frame.tools.length + "<br />"
+                    + "Gestures: " + frame.gestures.length + "<br />";
+/* 
+* In this example, we store a reference to the previous frame in a 
+* variable named previousFrame and pass that to each motion function. 
+* The example displays the Frame translation, rotation axis, rotation 
+* angle, and scale factor; there are a few other methods available as 
+* well. The motion functions of the Frame object describe the motion of 
+* the overall scene. The example displays the motion data as follows: 
+*/
+
+		// Frame motion factors
+		if (previousFrame) {
+		  var translation = frame.translation(previousFrame);
+		  frameString += "Translation: " + vectorToString(translation) + " mm <br />";
+
+		  var rotationAxis = frame.rotationAxis(previousFrame);
+		  var rotationAngle = frame.rotationAngle(previousFrame);
+		  frameString += "Rotation axis: " + vectorToString(rotationAxis, 2) + "<br />";
+		  frameString += "Rotation angle: " + rotationAngle.toFixed(2) + " radians<br />";
+
+		/*
+		* When you access a value that represents a vector, the Leap 
+		* JavaScript API expresses the vector as a standard Array object 
+		* containing three elements. This is the case with the result of the
+		* translation() function, above. The element, translation[0], for 
+		* example represents the x-coordinate of the vector. For convenience,
+		* I have defined the function vectorToString() to convert a vector to a * human-readable format.
+		*
+		* At the end of the callback function, remember to assign the current 
+		* frame to the previousFrame variable to serve as the point of 
+		* reference for motions in the next frame.
+		*/
+
+			var scaleFactor = frame.scaleFactor(previousFrame);
+		  frameString += "Scale factor: " + scaleFactor.toFixed(2) + "<br />";
+		}
+
+		// Display the output data in the frameOutput div created earlier
+		frameOutput.innerHTML = "<div style='width:300px; float:left; padding:5px'>" + frameString + "</div>";
+	}
+</script>
+</head>
+<body>
+    <h1>Leap JavaScript Sample</h1>
+    <div id="main">
+      <h3>Frame data:</h3>
+      <div id="frameData"></div>
+      <div style="clear:both;"></div>
+      <h3>Hand data:</h3>
+      <div id="handData"></div>
+      <div style="clear:both;"></div>
+      <h3>Finger and tool data:</h3>
+      <div id="pointableData"></div>
+      <div style="clear:both;"></div>
+      <h3>Gesture data:</h3>
+      <div id="gestureData"></div>
+    </div>
+  </body>
+</html>

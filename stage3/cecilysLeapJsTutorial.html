@@ -1,0 +1,76 @@
+<!-- The Leap outputs continuous data. We will set up an event loop to handle individual frames of data. There is more than one way to do this. I am using the one shown in the Leap's official JavaScript tutorial. -->
+<html>
+  <head>
+    <title>Leap JavaScript Sample</title>
+    <script src="leap.js"></script>
+
+		<!-- Script tags contain JavaScript. JavaScript comments are marked with two forward slashes as in // -->
+    <script>
+
+    // We create a variable to store the previous frame 
+    // for motion functions and dictate some relevant settings
+    var previousFrame;
+    var paused = false;
+    var pauseOnGesture = false;
+
+    // The leap.js file contains a variable for controllerOptions
+    // We will set one of these options before beginning our loop.
+    var controllerOptions = {enableGestures: true};
+
+    // In the following function, Leap.loop passes the latest 
+    // frame of Leap data on each browser animation cycle.
+    // This provides access to all the tracked objects.
+    Leap.loop(controllerOptions, function(frame) {
+  		if (paused) {
+        return; // Skip this update if the sensor is paused
+		})
+
+		// A callback function is a function that calls itself.
+		// For example, "If Cecily has less than $10, give Cecily 1$."
+		// This function would call itself until I have $10.
+
+    // Display Frame object data by assigning a variable to the
+    // div element with the ID "frameData". We'll use this later 
+    var frameOutput = document.getElementById("frameData");
+
+    // To display the data, create an HTML string containing the
+    // object properties and assign the string to a div element
+
+    var frameString = "Frame ID: " + frame.id  + "<br />"
+                + "Timestamp: " + frame.timestamp + " &micro;s<br />"
+                + "Hands: " + frame.hands.length + "<br />"
+                + "Fingers: " + frame.fingers.length + "<br />"
+                + "Tools: " + frame.tools.length + "<br />"
+                + "Gestures: " + frame.gestures.length + "<br />";
+
+    </script>
+
+  </head>
+  <body onload="checkLibrary()">
+    <h1>Leap JavaScript Sample</h1>
+    <div id="main">
+      <!-- Create the pause button here -->
+      <button id="pause" onclick="togglePause()">Pause</button>
+      <input type="checkbox" id="pauseOnGesture" onclick="pauseForGestures()">Pause on gesture</input>
+      <h3>Frame data:</h3>
+      <div id="frameData"></div>
+      <div style="clear:both;"></div>
+      <h3>Hand data:</h3>
+      <div id="handData"></div>
+      <div style="clear:both;"></div>
+      <h3>Finger and tool data:</h3>
+      <div id="pointableData"></div>
+      <div style="clear:both;"></div>
+      <h3>Gesture data:</h3>
+      <div id="gestureData"></div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+

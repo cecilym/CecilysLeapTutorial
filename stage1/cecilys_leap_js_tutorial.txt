@@ -1,0 +1,153 @@
+<!--
+* 
+* This tutorial was written as a beginner-friendly introduction
+* to Leap's JavaScript API. Like super beginner-friendly. The 
+* kind of guide I wish someone had made me for everything in life.
+* In the spirit of beginner compassion, let's introduce some terms.
+*
+* Websocket server: Technology that enables interaction between 
+* a browser and a web site, facilitating live content and the 
+* creation of real-time games.
+*
+* API: Specifications for how software components should 
+* interact with one another. The Leap JavaScript API specifies 
+* how JavaScript should be written to interact with the Leap. 
+*
+* Minified file: A file that has been condensed from its 
+* original format to make it smaller and or faster to run,
+* but that is otherwise functionally equal to its un-minified
+* version.
+* 
+* To use the JavaScript API, you will either need the file 
+* leap.js or its minified version, leap.min.js. These can be 
+* found on github.com/leapmotion/leapjs.
+*
+* I put these files in the the cecilysLeapTutorial folder 
+* in its subfolder titled js. 
+* 
+* JavaScript is to HTML what electricity is to the frame of a 
+* house. To use the JavaScript API, we must create an HTML file
+* for it to work through, a house for our electrical wires to 
+* run through. 
+*
+* 
+* A basic HTML file looks like this:
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Whatever the title is goes here</title>
+</head>
+<body>
+	
+</body>
+</html>
+
+* We need to tell this HTML file to use the leap.js file placed
+* in the js folder. We do that with a script like this one:
+
+<script src="leap.js"></script>
+
+* That tag would work if our .html file and our leap.js file
+* were located in the same folder, but in our case the leap.js
+* file is a level removed, in the js folder. We express this by 
+* modifying the script tag like this:
+
+<script src="../js/leap.js"></script>
+
+* The ../ means to go up a level before looking for the js folder.
+*
+* As mentioned, this could also be 
+
+<script src="../js/leap.min.js"></script>
+
+*
+* This tag is inserted between the <head></head> tags, after the
+* <title></title> tags. Like this:
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Whatever the title is goes here</title>
+	<script src="../js/leap.min.js"></script>
+</head>
+<body>
+	
+</body>
+</html>
+
+*
+* The file you are reading right now was saved as 
+* cecilys_leap_js_tutorial.txt, but in the next stages I will 
+* save file instructional file with the ending .html, as in 
+* cecilys_leap_js_tutorial.html. When you double-click a .html 
+* file, your computer's default behavior is to open a browser
+* window, but I want you to open cecilys_leap_js_tutorial.html
+* files in a text editor such as Sublime Text 2. You can do this 
+* by right-clicking, control-clicking, or alt-clicking the .html
+* file instead of double-clicking it.
+* 
+* You may be wondering what is up with the <!-- --> tags 
+* surrounding this text. Those are HTML comments tags. If this
+* document was an HTML file, anything written between the tags 
+* would be ignored. I will use these tags to explain what to do.
+* The *s are to aid in readability. 
+*
+* Each stage folder has a blank .html file. Use this to try coding
+* along with my instructions. When you are done with the stage, 
+* check your code against what is shown in indexFinished.html. 
+*
+* I need to fill you in on some basic HTML stuff before we move
+* forward. Teaching you HTML is beyond the scope of this tutorial,
+* so think of these tidbits as tiny knowledge bombs for your 
+* Leap hacking arsenal. Suspend your disbelief as to why anything 
+* works and of course, feel free to dive deeper along the way.
+* I suggest keeping a document of tags or code bits you don't 
+* understand so you can note the mysterious elements for later
+* clarification and move forward with the tutorial. So yea,
+
+<h1>Biggest text tag</h1>
+
+<h2>2nd biggest text tag</h2>
+
+<h3>3rd biggest text tag</h3>
+
+<h4>4th biggest text tag</h4>
+
+<h5>5th biggest text tag</h5>
+
+<h6>6th biggest text tag or the smallest text tag, depending on how you look at it.</h6>
+
+<p>Paragraph tag. Size will be determined by browser defaults or CSS. If HTML is like the frame of a house, CSS is like the plaster and paint on the walls. It's the style.</p>
+
+<div>Divs are like boxes.<div>
+
+<div><h1>They can contain other tags</h1></div>
+
+<div id="IDsShouldHaveNoSpaces">They are unique identifiers for HTML tags. An ID should only exist once on your HTML page.</div>
+
+<div class="classesOnTheOtherHand">Classes can be used by multiple tags on an HTML page.<div>
+
+<h4 class="classesOnTheOtherHand">This h4 tag shares the class of the last div tag.</h4>
+
+*
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

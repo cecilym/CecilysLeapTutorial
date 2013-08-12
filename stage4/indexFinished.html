@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Leap Motion JavaScript Sample</title>
+<script src="../js/leap.js"></script>
+<script>
+  // Store frame for motion functions
+  var previousFrame;
+  var paused = false;
+  var pauseOnGesture = false;
+
+  // Setup Leap loop with frame callback function
+  var controllerOptions = {enableGestures: true};
+
+  Leap.loop(controllerOptions, function(frame) {
+    if (paused) {
+      return; // Skip this update
+    }
+
+    // Display Frame object data
+    var frameOutput = document.getElementById("frameData");
+
+    var frameString = "Frame ID: " + frame.id  + "<br />"
+                    + "Timestamp: " + frame.timestamp + " &micro;s<br />"
+                    + "Hands: " + frame.hands.length + "<br />"
+                    + "Fingers: " + frame.fingers.length + "<br />"
+                    + "Tools: " + frame.tools.length + "<br />"
+                    + "Gestures: " + frame.gestures.length + "<br />";
+
+    // Frame motion factors
+    if (previousFrame) {
+      var translation = frame.translation(previousFrame);
+      frameString += "Translation: " + vectorToString(translation) + " mm <br />";
+
+      var rotationAxis = frame.rotationAxis(previousFrame);
+      var rotationAngle = frame.rotationAngle(previousFrame);
+      frameString += "Rotation axis: " + vectorToString(rotationAxis, 2) + "<br />";
+      frameString += "Rotation angle: " + rotationAngle.toFixed(2) + " radians<br />";
+
+      var scaleFactor = frame.scaleFactor(previousFrame);
+      frameString += "Scale factor: " + scaleFactor.toFixed(2) + "<br />";
+    }
+    frameOutput.innerHTML = "<div style='width:300px; float:left; padding:5px'>" + frameString + "</div>";
+  }
+</script>
+</head>
+<body>
+    <h1>Leap JavaScript Sample</h1>
+    <div id="main">
+      <button id="pause" onclick="togglePause()">Pause</button>
+      <input type="checkbox" id="pauseOnGesture" onclick="pauseForGestures()">Pause on gesture</input>
+      <h3>Frame data:</h3>
+      <div id="frameData"></div>
+      <div style="clear:both;"></div>
+      <h3>Hand data:</h3>
+      <div id="handData"></div>
+      <div style="clear:both;"></div>
+      <h3>Finger and tool data:</h3>
+      <div id="pointableData"></div>
+      <div style="clear:both;"></div>
+      <h3>Gesture data:</h3>
+      <div id="gestureData"></div>
+    </div>
+  </body>
+</html>
